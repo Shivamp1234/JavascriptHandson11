@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <pre>Question 1 : function counter(){
+        var counter = 0;
+    
+        function IncreaseCounter() {
+            return counter += 1;
+        };
+    
+        return IncreaseCounter;
+    }
+    
+    var counter = counter();
+    alert(counter());
+    alert(counter());
+    alert(counter());
+    alert(counter());</pre>
+    <p>Answer:</p>
+    <pre>
+        1
+        2
+        3
+        4
+        Reason : In the outer function the value of counter is 0 but whenever the outerfunction i.e. counter() is called it returns innerfunction 
+        i.e. IncreaseCounter() and this innerfunction returns the value of counter which is incremented by 1 .Therefore every time the outerfunction
+        is called the value of counter will increase by 1.
+    </pre>
+    <br>
+    <pre>Question 2 : let count = 0;
+        (function () {
+          if (count === 0) {
+            let count = 1;
+            console.log(count); // What is logged?
+          }
+          console.log(count); // What is logged?
+        })();</pre>
+    <p>Answer:</p>
+    <pre>
+        1
+        0
+        Reason : The original value of count is 0 but in the IIFE there is an if statement and hence the condition is true
+         in the if statement the count value will now become count=1 and the first log statement will print the count that
+        is 1 in this case.But the original value of count still remains the same i.e. 0 therefore the second log statement
+        will print 0.
+    </pre>
+    <br>
+    <pre>Question 3 : "for (var i = 0; i < 3; i++) {
+        setTimeout(function log() {
+          console.log(i); // What is logged?
+        }, 1000);
+      }"</pre>
+    <p>Answer:</p>
+    <pre>
+        3
+        3
+        3
+        Reason : The loop will run for 3 times and the value of i when the condition is false will be 3 therefore
+        console.log will print 3 and the value of setTimeout will be 3 as the loop will run 3 times Therefore the output
+        will be 3 times 3.
+    </pre>
+    <br>
+    <pre>Question 4 : Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</pre>
+    <p>Answer:</p>
+    <pre>function outerfunction(length){
+        function innerfunction(breadth){
+          return length*breadth;
+        }
+        return innerfunction;
+      }
+      const length=5;
+      const breadth=10;
+      let area=outerfunction(length)(breadth);
+      console.log(area);</pre>
+    <br>
+    <pre>Question 5 : Take a variable in outer function and create an inner function to increase the counter every time it is called</pre>
+    <p>Answer:</p>
+    <pre>function outerfunction(x){
+        function innerfunction(counter){
+          return counter=counter+1;
+        }
+        return innerfunction;
+      }
+      let x=5;
+      let counter=0;
+      let count=outerfunction(x)(counter);
+      console.log(count);</pre>
+    <br>
+    <pre>Question 6 : Print Output
+        var a = 12;
+        (function () {
+          alert(a);
+        })();</pre>
+    <p>Answer:</p>
+    <pre>
+        12
+        Reason : The value of variable a is 12 therefore the console will output 12 whwn the function is called.
+    </pre>
+    <br>
+    <pre>Question 7 : var a = 10;
+        var x = (function () {
+          var a = 12;
+          return function () {
+            alert(a);
+          };
+        })();
+        x();</pre>
+    <p>Answer:</p>
+    <pre>
+        12
+        Reason : The variable x is assigned an IIFE(immediately invoked function expression) and inside the IIFE there is 
+        another anonymous function which logs the value of variable a.When the IIFE function is called the current value
+         of the anonymous function that is 12 as var a = 12 gets stored in the variable x and therefore the output is 12.  
+    </pre>
+    <br>
+    <pre>Question 8 : var globalVar = ""xyz"";
+
+        (function outerFunc(outerArg) {
+            var outerVar = 'a';
+            
+            (function innerFunc(innerArg) {
+            var innerVar = 'b';
+            
+            console.log(
+                ""outerArg = "" + outerArg + ""\n"" +
+                ""innerArg = "" + innerArg + ""\n"" +
+                ""outerVar = "" + outerVar + ""\n"" +
+                ""innerVar = "" + innerVar + ""\n"" +
+                ""globalVar = "" + globalVar);
+            
+            })(456);
+        })(123);</pre>
+    <p>Answer:</p>
+    <pre>
+        outerArg = 123
+        innerArg = 456
+        outerVar = a
+        innerVar = b
+        globalVar = xyz
+        Reason : 
+        The outerArg corresponds to the outerfunction outerFunc() which has the parameter 123 therefore 123 is logged for outerArg
+         The innerArg corresponds to the innerfunction innerFunc() which has the parameter 456 therefore 456 is logged for innerArg
+         The outerVar corresponds to the variable outerVar which has the value 'a' therefore a is logged for outerVar
+         The innerVar corresponds to the variable innerVar which has the value 'b' therefore b is logged for innerVar
+         The globalVar corresponds to the variable globalVar which has the value 'xyz' therefore xyz is logged for globalVar
+    </pre>
+    <br>
+</body>
+</html>
